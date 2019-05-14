@@ -2,7 +2,9 @@
   text-align: center;
   width: 100%;
 }
-
+.main{
+  background: #364d79;
+}
 .App-logo {
   animation: App-logo-spin infinite 10s linear;
   height: 100%;

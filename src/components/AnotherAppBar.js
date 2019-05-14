@@ -1,4 +1,5 @@
-import { Drawer, Menu, Icon } from 'antd';
+import { Menu, Icon } from 'antd';
+import {Helmet} from 'react-helmet';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
@@ -12,15 +13,15 @@ class AnotherAppBar extends Component {
     super();
     this.state = {
         menu : [
-            {url: '/home',name:'Home'},
-            {url: '/profile',name:'Profile'},
-            {url: '/portofolio',name:'Portofolio'},
-            {url: '/contact',name:'Contact'},
+            {url: '/profile',name:'Profile', icon: 'user'},
+            {url: '/contact',name:'Contact', icon: 'contacts'},
+            {url: '/portofolio',name:'Portofolio', icon: 'file-text'},
+            {url: '/home',name:'Home', icon: 'home'}
         ]
     }
 }
   state = {
-    current: 'mail',
+    current: 'Home',
   }
 
   handleClick = (e) => {
@@ -37,17 +38,20 @@ class AnotherAppBar extends Component {
                     <a href="">logo</a>
                 </div> */}
                 <div className="menuCon">
-                    <div className="leftMenu">
-                    <Menu mode="horizontal">
-                {this.state.menu.map((data) => {
-                    return(
-                        <Menu.Item key={data.name}>
-                            <Link to={data.url}>{data.name}</Link>
-                        </Menu.Item>
-                          )
-                  })}
-
-                        </Menu>
+                    <div className="rightMenu">
+                      <Menu
+                      onClick={this.handleClick}
+                      selectedKeys={[this.state.current]}
+                      mode="horizontal"
+                      >
+                      {this.state.menu.map((data) => {
+                          return(
+                              <Menu.Item key={data.name} style={{float: 'right'}}>
+                                  <Link to={data.url}><Icon type={data.icon}/>{data.name}</Link>
+                              </Menu.Item>
+                                )
+                        })}
+                      </Menu>
                     </div>
                 </div>
       </nav>
